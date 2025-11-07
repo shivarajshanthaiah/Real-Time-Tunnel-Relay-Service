@@ -40,7 +40,7 @@ func NewHub(parentCtx context.Context, logger *zap.Logger) *Hub {
 	}
 }
 
-// Run starts the hub loop; call in a goroutine.
+// Run starts the hub loop call in a goroutine.
 func (h *Hub) Run() {
 	h.logger.Info("hub started")
 

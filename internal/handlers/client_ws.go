@@ -1,13 +1,13 @@
 package handlers
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"github.com/shivarajshanthaiah/tunnel-relay-service/internal/client"
 	"github.com/shivarajshanthaiah/tunnel-relay-service/internal/hub"
+	"go.uber.org/zap"
 )
 
 var upgrader = websocket.Upgrader{
@@ -25,7 +25,7 @@ func ClientWSHandler(h *hub.Hub) gin.HandlerFunc {
 		}
 		conn, err := upgrader.Upgrade(c.Writer, c.Request, nil)
 		if err != nil {
-			log.Printf("client upgrade failed: %v", err)
+			h.Logger().Error("client ugrade failed", zap.Error(err))
 			return
 		}
 		// construct client and serve

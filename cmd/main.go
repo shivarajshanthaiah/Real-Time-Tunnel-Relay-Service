@@ -19,7 +19,7 @@ import (
 )
 
 func main() {
-	// gin
+	// initialise gin with logger and recovery mode
 	r := gin.New()
 	r.Use(gin.Logger(), gin.Recovery())
 
